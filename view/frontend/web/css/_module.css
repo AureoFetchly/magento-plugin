@@ -1,0 +1,25 @@
+@font-face {
+  font-family: 'Montserrat-Regular';
+  src: url('/Edebit_Payment/fonts/Montserrat-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: auto;
+}
+@font-face {
+  font-family: 'Montserrat-Medium';
+  src: url('/Edebit_Payment/fonts/Montserrat-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: auto;
+}
+@font-face {
+  font-family: 'Montserrat-SemiBold';
+  src: url('/Edebit_Payment/fonts/Montserrat-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: auto;
+}
+@font-face {
+  font-family: 'Montserrat-Bold';
+  src: url('/Edebit_Payment/fonts/Montserrat-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: auto;
+}
+/*# sourceMappingURL=_module.css.map */

@@ -1,0 +1,50 @@
+<form class="payment-form" data-bind="visible: currentStep() === 0">
+    <div data-bind="if: gateways().length === 2">
+        <div data-bind="
+          template: {
+            name: 'Edebit_Payment/partials/pay-button',
+            data: {
+              type: 'submit',
+              gateway: 'yodlee',
+              code: getCode(),
+              notes: getNotes(),
+              enabled: isEnabled(),
+              click: nextStep.bind($data, 'yodlee')
+            },
+            html: true
+          }
+        "></div>
+        <span class="payment-form-bank__bold">- OR - </span>
+        <div data-bind="
+          template: {
+            name: 'Edebit_Payment/partials/pay-button',
+            data: {
+              type: 'submit',
+              gateway: 'datax',
+              code: getCode(),
+              notes: getNotes(),
+              enabled: isEnabled(),
+              click: nextStep.bind($data, 'datax')
+            },
+            html: true
+          }
+        "></div>
+    </div>
+
+    <div data-bind="if: gateways().length === 1">
+        <div data-bind="
+          template: {
+            name: 'Edebit_Payment/partials/pay-button',
+            data: {
+              type: 'submit',
+              gateway: gateways()[0].toLowerCase(),
+              code: getCode(),
+              notes: getNotes(),
+              enabled: isEnabled(),
+              click: nextStep.bind($data, '')
+            },
+            html: true
+          }
+        "></div>
+    </div>
+</form>

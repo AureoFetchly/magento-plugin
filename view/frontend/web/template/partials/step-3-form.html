@@ -1,0 +1,206 @@
+
+<!-- ko if: existingAccounts().length -->
+<form class="payment-form">
+    <h2 class="payment-option-header__title" style="margin-bottom: 10px;">
+        Please enter your banking details to complete your payment
+    </h2>
+    <div class="payment-form__input-control">
+        <label for="existing-accounts" data-bind="attr: {for: getCode() + '_existing_accounts'}">
+            <span><!-- ko i18n: 'Select your Bank'--><!-- /ko --></span>
+        </label>
+
+        <div class="payment-form__bank-accounts">
+            <select id="existing-accounts"
+                    data-bind="
+                        options: getBankAccounts(),
+                        optionsText: 'name',
+                        optionsValue: 'value',
+                        value: selectedAccount"
+            >
+            </select>
+        </div>
+    </div>
+
+    <button
+        class='payment-form__add-account'
+        type='button'
+        data-bind="click: addNewAccount"
+    >
+        Can&apos;t find your account? Add a new one.
+    </button>
+
+    <div style="padding: 10px 0;">
+        <label class="payment-form__terms" data-bind="attr: {for: getCode() + '_save_bank_account'}">
+            <input
+                type="checkbox"
+                name="save-bank-account"
+                data-bind="checked: saveBankAccount, attr: {id: getCode() + '_save_bank_account'}"
+            >
+            <span>
+                Save payment information for future purchases.
+            </span>
+        </label>
+
+        <label class="payment-form__terms" data-bind="attr: {for: getCode() + '_terms_condition'}">
+            <input
+                type="checkbox"
+                name="terms-condition"
+                data-bind="checked: termsCondition, attr: {id: getCode() + '_terms_condition'}"
+            >
+            <span>
+                I hereby agree the
+                <a href="https://edebitdirect.com/terms-conditions/" target="_blank"
+                   style="color: #000; font-weight: bold;">Terms and Conditions</a> and certify that I
+                am the owner of the account above and authorize said account
+                to be debited for the amount specified.
+            </span>
+        </label>
+
+        <!-- ko if: getCode() !== 'draft' -->
+        <label class="payment-form__terms" data-bind="attr: {for: getCode() + '_ach_terms'}">
+            <input
+                type="checkbox"
+                name="ach-terms"
+                data-bind="checked: achTerms, attr: {id: getCode() + '_ach_terms'}"
+            >
+            <span>
+                I understand that this ACH authorization will remain in
+                full force and in effect until I (Customer) notify the
+                Retailer (Service Provider) via email or by phone that I
+                wish to revoke this authorization. I understand the
+                Retailer requires at least 2 business days prior notice
+                in order to cancel this authorization. Customer receipt
+                will be sent via email with the Retailers email address
+                and phone number.
+            </span>
+        </label>
+        <!-- /ko -->
+    </div>
+
+    <div class="payment-form__button">
+        <button
+            class="payment-form__button__submit"
+            data-bind="click: nextStep"
+            type="submit"
+        >
+            <span data-bind="i18n: 'Submit'"></span>
+        </button>
+    </div>
+</form>
+<!-- /ko -->
+
+<!-- ko ifnot: existingAccounts().length -->
+<form class="payment-form" data-bind="if: selectedGateway() === 'datax'">
+    <h2 class="payment-option-header__title" style="margin-bottom: 10px;">
+        Please enter your banking details to complete your payment
+    </h2>
+    <div class="payment-form__input-control">
+        <label for="routing-number" data-bind="attr: {for: getCode() + '_routing_number'}">
+            <span><!-- ko i18n: 'Routing Number'--><!-- /ko --></span>
+            <span style="color: red;">&#42;</span>
+        </label>
+        <div>
+            <input
+                type="number"
+                id="routing-number"
+                name="routing-number"
+                data-bind="value: routingNumber"
+                data-validate="{'required-number':true, minlength:8, maxlength:9}"
+            />
+        </div>
+    </div>
+
+    <div class="payment-form__input-control">
+        <label for="account-number" data-bind="attr: {for: getCode() + '_account_number'}">
+            <span><!-- ko i18n: 'Account Number'--><!-- /ko --></span>
+            <span style="color: red;">&#42;</span>
+        </label>
+        <div>
+            <input
+                type="number"
+                id="account-number"
+                name="account-number"
+                data-bind="value: accountNumber"
+                data-validate="{'required-number':true, minlength:10}"
+            />
+        </div>
+    </div>
+
+    <div class="payment-form__input-control">
+        <label for="confirm-account-number"
+               data-bind="attr: {for: getCode() + '_confirm_account_number'}">
+            <span><!-- ko i18n: 'Confirm Account Number'--><!-- /ko --></span>
+            <span style="color: red;">&#42;</span>
+        </label>
+        <div>
+            <input
+                type="number"
+                id="confirm-account-number"
+                name="confirm-account-number"
+                data-bind="value: confirmAccountNumber"
+                data-validate="{'required-number':true, minlength:10}"
+            />
+        </div>
+    </div>
+
+    <div style="padding: 10px 0;">
+        <!-- ko ifnot: isOtpOptional() -->
+        <label class="payment-form__terms" data-bind="attr: {for: getCode() + '_save_bank_account'}">
+            <input
+                type="checkbox"
+                name="save-bank-account"
+                data-bind="checked: saveBankAccount, attr: {id: getCode() + '_save_bank_account'}"
+            >
+            <span>
+                Save payment information for future purchases.
+            </span>
+        </label>
+        <!-- /ko -->
+
+        <label class="payment-form__terms" data-bind="attr: {for: getCode() + '_terms_condition'}">
+            <input
+                type="checkbox"
+                name="terms-condition"
+                data-bind="checked: termsCondition, attr: {id: getCode() + '_terms_condition'}"
+            >
+            <span>
+                I hereby agree the
+                <a href="https://edebitdirect.com/terms-conditions/" target="_blank"
+                   style="color: #000; font-weight: bold;">Terms and Conditions</a> and certify that I
+                am the owner of the account above and authorize said account
+                to be debited for the amount specified.
+            </span>
+        </label>
+
+        <!-- ko if: getCode() !== 'draft' -->
+        <label class="payment-form__terms" data-bind="attr: {for: getCode() + '_ach_terms'}">
+            <input
+                type="checkbox"
+                name="ach-terms"
+                data-bind="checked: achTerms, attr: {id: getCode() + '_ach_terms'}"
+            >
+            <span>
+                I understand that this ACH authorization will remain in
+                full force and in effect until I (Customer) notify the
+                Retailer (Service Provider) via email or by phone that I
+                wish to revoke this authorization. I understand the
+                Retailer requires at least 2 business days prior notice
+                in order to cancel this authorization. Customer receipt
+                will be sent via email with the Retailers email address
+                and phone number.
+            </span>
+        </label>
+        <!-- /ko -->
+    </div>
+
+    <div class="payment-form__button">
+        <button
+            class="payment-form__button__submit"
+            data-bind="click: nextStep"
+            type="submit"
+        >
+            <span data-bind="i18n: 'Submit'"></span>
+        </button>
+    </div>
+</form>
+<!-- /ko -->

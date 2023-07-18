@@ -1,0 +1,113 @@
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<div class="payment-method" data-bind="css: {'_active': (getCode() == isChecked())}">
+    <div class="payment-method-title field choice">
+        <label>
+            <input type="radio"
+                   name="payment[method]"
+                   class="radio"
+                   data-bind="attr: {'id': getCode()}, value: getCode(), checked: isChecked, click: selectPaymentMethod, visible: isRadioButtonVisible()" />
+        </label>
+        <label class="label" data-bind="attr: {'for': getCode()}">
+            <span data-bind="text: getTitle()"></span>
+        </label>
+    </div>
+
+    <div class="payment-method-content">
+        <!-- ko foreach: getRegion('messages') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+
+        <div class="payment-method-billing-address">
+            <!-- ko foreach: $parent.getRegion(getBillingAddressFormName()) -->
+            <!-- ko template: getTemplate() --><!-- /ko -->
+            <!--/ko-->
+        </div>
+
+        <!-- ko if: gateways().length -->
+        <!-- First Form -->
+        <div class="checkout-payment-modal">
+            <section class="multi-step-form">
+                <!-- include header template -->
+                <header data-bind="template: {name: 'Edebit_Payment/partials/header', html: true}"></header>
+
+                <div id='container-fastlink-draft'></div>
+
+                <div class="multi-step-form__content">
+                    <!-- include Step 0 form template -->
+                    <div data-bind="
+                        template: {
+                            name: 'Edebit_Payment/partials/step-0-form',
+                            if: currentStep() === 0,
+                            html: true
+                        }
+                    "></div>
+
+                    <!-- include Step 1 form template -->
+                    <div data-bind="
+                        template: {
+                            name: 'Edebit_Payment/partials/step-1-form',
+                            if: currentStep() === 1,
+                            html: true
+                        }
+                    "></div>
+
+                    <!-- include Step 2 form template -->
+                    <div data-bind="
+                        template: {
+                            name: 'Edebit_Payment/partials/step-2-form',
+                            if: currentStep() === 2,
+                            html: true
+                        }
+                    "></div>
+
+                    <!-- include Step 3 form template -->
+                    <div data-bind="
+                        template: {
+                            name: 'Edebit_Payment/partials/step-3-form',
+                             if: currentStep() === 3,
+                             html: true
+                        }
+                    "></div>
+                </div>
+
+                <!-- ko if: isChase() -->
+                <div class="chase-modal">
+                    <img data-bind="attr: { src: require.toUrl('Edebit_Payment/images/chase.png') }" alt="Chase Image" src="">
+                    <p>Will you be using a Chase account for this transaction?</p>
+                    <div>
+                        <button
+                            class="payment-form__button__submit"
+                            data-bind="click: yesButton"
+                            type="submit"
+                        >
+                            <span data-bind="i18n: 'Yes'"></span>
+                        </button>
+
+                        <button
+                            class="payment-form__button__submit"
+                            data-bind="click: noButton"
+                            type="submit"
+                        >
+                            <span data-bind="i18n: 'No'"></span>
+                        </button>
+                    </div>
+                </div>
+                <!-- /ko -->
+            </section>
+        </div>
+        <!-- /ko -->
+
+        <!-- ko ifnot: gateways().length -->
+        <p class="message warning">
+            Validation service currently unavailable. Apologies for the inconvenience.
+            Please try again later or contact support.
+        </p>
+        <!-- /ko -->
+    </div>
+</div>

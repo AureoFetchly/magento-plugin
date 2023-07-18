@@ -1,0 +1,53 @@
+<?xml version="1.0" ?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Edebit_Payment::css/styles.css" />
+        <script defer="" src="https://cdn.yodlee.com/fastlink/v4/initialize.js" src_type="url"/>
+    </head>
+	<body>
+		<referenceBlock name="checkout.root">
+			<arguments>
+				<argument name="jsLayout" xsi:type="array">
+					<item name="components" xsi:type="array">
+						<item name="checkout" xsi:type="array">
+							<item name="children" xsi:type="array">
+								<item name="steps" xsi:type="array">
+									<item name="children" xsi:type="array">
+										<item name="billing-step" xsi:type="array">
+											<item name="children" xsi:type="array">
+												<item name="payment" xsi:type="array">
+													<item name="children" xsi:type="array">
+														<item name="renders" xsi:type="array">
+															<item name="children" xsi:type="array">
+																<item name="ach" xsi:type="array">
+																	<item name="component" xsi:type="string">Edebit_Payment/js/view/payment/ach</item>
+																	<item name="methods" xsi:type="array">
+																		<item name="ach" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																	</item>
+																</item>
+																<item name="draft" xsi:type="array">
+																	<item name="component" xsi:type="string">Edebit_Payment/js/view/payment/draft</item>
+																	<item name="methods" xsi:type="array">
+																		<item name="draft" xsi:type="array">
+																			<item name="isBillingAddressRequired" xsi:type="boolean">true</item>
+																		</item>
+																	</item>
+																</item>
+															</item>
+														</item>
+													</item>
+												</item>
+											</item>
+										</item>
+									</item>
+								</item>
+							</item>
+						</item>
+					</item>
+				</argument>
+			</arguments>
+		</referenceBlock>
+	</body>
+</page>

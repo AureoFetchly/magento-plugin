@@ -1,0 +1,99 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="payment" sortOrder="1000" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+            <group id="ach" sortOrder="0" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <comment>
+                    <![CDATA[ <a href="https://edebit.staging.fetchlydev.com/login" target="_blank"
+                    rel="noopener noreferrer">Click here to log in to your existing Edebit account</a>.]]>
+                </comment>
+                <label>ACH Payment</label>
+
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
+                    <label>Enable ACH Direct Debit</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="environment" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Environment</label>
+                    <source_model>Edebit\Payment\Model\Adminhtml\Source\Environment</source_model>
+                </field>
+
+                <field id="title" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Title</label>
+                </field>
+
+                <field id="merchant_api_key" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Merchant API Key</label>
+                    <config_path>payment/ach/merchant_api_key</config_path>
+                </field>
+
+                <field id="client_id" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client ID</label>
+                    <config_path>payment/ach/client_id</config_path>
+                </field>
+
+                <field id="yodlee_note" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Yodlee intro Note</label>
+                </field>
+
+                <field id="datax_note" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Datax intro Note</label>
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1"
+                       showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+            </group>
+            <group id="draft" sortOrder="0" showInWebsite="1" showInStore="1" showInDefault="1" translate="label">
+                <comment>
+                    <![CDATA[ <a href="https://edebit.staging.fetchlydev.com/login" target="_blank"
+                    rel="noopener noreferrer">Click here to log in to your existing Edebit account</a>.]]>
+                </comment>
+                <label>Draft Payment</label>
+
+                <field id="active" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1">
+                    <label>Enable Draft</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="environment" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Environment</label>
+                    <source_model>Edebit\Payment\Model\Adminhtml\Source\Environment</source_model>
+                    <config_path>payment/draft/environment</config_path>
+                </field>
+
+                <field id="title" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Title</label>
+                </field>
+
+                <field id="merchant_api_key" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Merchant API Key</label>
+                    <config_path>payment/draft/merchant_api_key</config_path>
+                </field>
+
+                <field id="client_id" translate="label" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Client ID</label>
+                    <config_path>payment/draft/client_id</config_path>
+                </field>
+
+                <field id="yodlee_note" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Yodlee intro Note</label>
+                </field>
+
+                <field id="datax_note" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Datax intro Note</label>
+                </field>
+
+                <field id="sort_order" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Sort Order</label>
+                    <frontend_class>validate-number</frontend_class>
+                </field>
+			</group>
+		</section>
+	</system>
+</config>

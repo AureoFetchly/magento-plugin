@@ -1,0 +1,340 @@
+.checkout-payment-modal {
+  position: relative;
+  width: 425px;
+  height: fit-content;
+  background-color: #fafafa;
+  border-radius: 20px;
+}
+.checkout-payment-modal .multi-step-form {
+  padding: 25px;
+}
+.checkout-payment-modal .multi-step-form > div:not(head) {
+  width: 100%;
+}
+.checkout-payment-modal .multi-step-form,
+.checkout-payment-modal .multi-step-form header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.checkout-payment-modal .checkout-payment-form__header.one {
+  position: absolute;
+  top: 20px;
+  right: 0;
+}
+.checkout-payment-modal .checkout-payment-form__header.two {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.checkout-payment-modal .checkout-payment-form__header__back {
+  margin-left: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  color: black;
+  font-family: Montserrat, sans-serif;
+  border: 0;
+  background: transparent;
+}
+.checkout-payment-modal .checkout-payment-form__header__payment {
+  max-width: 100%;
+  width: 125px;
+  margin-right: 10px;
+}
+.checkout-payment-modal .payment-option-header {
+  margin-top: 40px;
+}
+.checkout-payment-modal .payment-option-header__title {
+  font-family: Montserrat, sans-serif !important;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #202020;
+}
+.checkout-payment-modal .payment-option-header__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  background-color: #f2f2f2;
+  margin: 0 auto 1.5rem;
+}
+.checkout-payment-modal .payment-option-header__logo > img {
+  display: block;
+  height: auto;
+  width: 100%;
+  border-radius: 9999px;
+}
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  margin-top: 10px;
+}
+.payment-form input:focus,
+.payment-form input:active {
+  box-shadow: 0 0 3px 1px transparent;
+}
+.payment-form__input-control {
+  width: 100%;
+  padding: 10px 0;
+}
+.payment-form__input-control label {
+  font-family: Montserrat, sans-serif !important;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: #6d6d6d;
+  margin-bottom: 6px;
+}
+.payment-form__input-control input,
+.payment-form__input-control select {
+  border-radius: 10px;
+  border: 1px solid #ea6000 !important;
+  background-color: #fff !important;
+  height: 44px;
+  width: 100%;
+  padding-left: 0.5rem;
+  font-size: 14px;
+  margin-top: 6px;
+}
+.payment-form__add-account,
+.payment-form__add-account:hover,
+.payment-form__add-account:focus,
+.payment-form__add-account:active {
+  text-decoration: underline;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  background: transparent;
+  border: 0;
+  font-family: Montserrat, sans-serif !important;
+  color: #000;
+  text-align: center;
+  padding: 10px 0;
+}
+.payment-form__accepted__terms {
+  text-align: center;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  color: #202020;
+  font-family: Montserrat, sans-serif;
+}
+.payment-form__expiration {
+  font-family: Montserrat, sans-serif !important;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  color: #6d6d6d;
+}
+a.payment-form__expiration {
+  cursor: pointer;
+  display: block;
+}
+a.payment-form__expiration:hover,
+a.payment-form__expiration:active {
+  color: inherit;
+}
+.payment-form__terms {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-bottom: 12px;
+}
+.payment-form__terms input[type="checkbox"] {
+  width: 2rem !important;
+  height: 2rem !important;
+  border-radius: 9999px !important;
+  border: 1px solid #d1d5db !important;
+  color: #8acc12 !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  padding: 0 !important;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+  display: inline-block !important;
+  vertical-align: middle !important;
+  background-origin: border-box !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  user-select: none !important;
+  flex-shrink: 0 !important;
+  background-color: #fff !important;
+  margin: 0 !important;
+  margin-right: 6px !important;
+}
+.payment-form__terms input[type="checkbox"]:focus {
+  outline-color: #8acc12 !important;
+  outline-offset: 2px !important;
+}
+.payment-form__terms input[type="checkbox"]:checked {
+  border-color: transparent !important;
+  background-color: currentColor !important;
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+}
+.payment-form__terms span {
+  font-family: Montserrat, sans-serif !important;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  color: #6d6d6d;
+}
+.payment-form__terms span a {
+  font-weight: bold;
+  color: inherit;
+  text-decoration: none;
+}
+.payment-form__terms span a:hover {
+  text-decoration: underline;
+}
+.payment-form__terms input {
+  background: #FFFFFF;
+  border: 1px solid #E2E2E2;
+  border-radius: 5px;
+}
+.payment-form__button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.payment-form__button__submit {
+  background: linear-gradient(180deg, #6ca800 0%, #8acc12 100%);
+  box-shadow: 4px 4px 4px #dedede;
+  border-radius: 10px;
+  width: 141px;
+  height: 44px;
+  outline: unset;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #ffffff;
+  margin-top: 20px;
+}
+.payment-form__button__submit:hover,
+.payment-form__button__submit:active,
+.payment-form__button__submit:focus {
+  background: linear-gradient(180deg, #8acc12 0%, #6ca800 100%);
+  color: #ffffff;
+}
+.payment-form-bank__description {
+  font-family: Montserrat, sans-serif !important;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #202020;
+  font-weight: 700;
+}
+.payment-form-bank__draft {
+  font-family: Montserrat, sans-serif !important;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+  color: #6d6d6d;
+  margin-top: 4px;
+}
+.payment-form-bank__notes {
+  padding: 6px 12px;
+  background: #E2E2E2;
+  width: 378px;
+}
+.payment-form-bank__notes p {
+  font-family: Montserrat, sans-serif !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 15px;
+  color: #202020;
+}
+.payment-form-bank__bold {
+  font-family: Montserrat, sans-serif !important;
+  font-size: 20px;
+  line-height: 20px;
+  text-align: center;
+  color: #202020;
+  margin: 45px 0;
+  font-weight: 700;
+  display: block;
+}
+p.message {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+}
+/* Error message styles */
+p.error {
+  color: #ff0000;
+  border: 2px solid #ff0000;
+  background-color: #ffe6e6;
+}
+span.error {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 1rem;
+  display: block;
+  font-family: Montserrat, sans-serif !important;
+}
+/* Warning message styles */
+p.warning {
+  color: #ffc107;
+  border: 2px solid #ffc107;
+  background-color: #fff3cd;
+}
+.chase-modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.chase-modal img {
+  width: 134px;
+  height: 100px;
+}
+.chase-modal p {
+  font-family: 'Montserrat-Bold', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  color: #202020;
+  margin: 22px 0;
+}
+.chase-modal div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+h2 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+*,
+body {
+  font-family: Montserrat, sans-serif !important;
+}
+/*# sourceMappingURL=styles.css.map */

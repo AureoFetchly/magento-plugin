@@ -1,0 +1,26 @@
+{
+    "name": "edebit/module-payment",
+    "description": "e-Debit Payment Magento 2 Extension",
+    "version": "1.0.0",
+    "type": "magento2-module",
+    "prefer-stable": true,
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "require": {
+        "php": "~7.3.0||~7.4.0||~8.1.0||~8.2.0",
+        "magento/framework": ">=103.0.0 <=103.0.6",
+        "magento/module-sales": ">=103.0.0 <=103.0.6",
+        "magento/module-checkout": ">=100.4.0 <=100.4.6",
+        "magento/module-payment": ">=100.4.0 <=100.4.6"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Edebit\\Payment\\": ""
+        }
+    }
+}

@@ -1,0 +1,44 @@
+<form class="payment-form">
+    <div class="payment-form__input-control">
+        <label for="otp-code" data-bind="attr: {for: getCode() + '_otp_code'}">
+        </label>
+        <div>
+            <input
+                type="number"
+                id="otp-code"
+                name="otp-code"
+                data-bind="value: otpCode"
+                class="minimum-length-4 maximum-length-4"
+            >
+        </div>
+        <p class="payment-form__expiration" data-bind="text: getExpiryTime(), visible: timer() > 0"
+           style="margin-top: 4px;"></p>
+        <span class="error" data-bind="visible: timer() === 0">OTP code has expired</span>
+    </div>
+
+    <div class="payment-form__button">
+        <!-- ko if: getCode() === 'ach' -->
+        <button
+            class="payment-form__button__submit"
+            data-bind="click: nextStep"
+            type="submit"
+        >
+            <span data-bind="i18n: 'Next'"></span>
+        </button>
+        <!-- /ko -->
+
+        <!-- ko if: getCode() === 'draft' -->
+        <button
+            class="payment-form__button__submit"
+            data-bind="click: nextStep"
+            type="submit"
+        >
+            <span data-bind="i18n: 'Next'"></span>
+        </button>
+        <!-- /ko -->
+        <a class="payment-form__expiration" data-bind="click: resendCode"
+           style="margin-top: 2rem; color: #202020 !important; text-decoration: underline">
+            Didn't get a code? Click to resend.
+        </a>
+    </div>
+</form>

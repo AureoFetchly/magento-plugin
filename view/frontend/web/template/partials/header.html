@@ -1,0 +1,42 @@
+<!-- start header -->
+<div class="checkout-payment-form__header one" data-bind="visible: currentStep() === 0">
+    <img class="checkout-payment-form__header__payment" data-bind="attr: { src: paymentImage }" alt="Logo"  src=""/>
+</div>
+
+<div class="checkout-payment-form__header two" data-bind="visible: currentStep() !== 0">
+    <button class="checkout-payment-form__header__back" type="button" data-bind="click: prevStep">Back</button>
+    <img class="checkout-payment-form__header__payment" data-bind="attr: { src: paymentImage }" alt="Logo"  src=""/>
+</div>
+
+<div class="payment-option-header">
+
+    <figure class="payment-option-header__logo">
+        <img alt="Merchant logo" loading="lazy" data-bind="attr: { src: merchantLogo }" src="">
+    </figure>
+
+    <!-- start step 0 header -->
+    <div data-bind="visible: currentStep() === 0">
+        <h2 class="payment-option-header__title">
+            Please select the Simple, Safe & Secure payment option that best fits your needs.
+        </h2>
+    </div>
+    <!-- end step 0 header -->
+
+    <!-- start step 1 header -->
+    <div data-bind="visible: currentStep() === 1">
+        <h2 class="payment-option-header__title">
+            Start by entering your phone or email below.
+        </h2>
+    </div>
+    <!-- end step 1 header -->
+
+    <!-- start step 2 header -->
+    <div data-bind="visible: currentStep() === 2 && !isChase()">
+        <h2 class="payment-option-header__title">
+            The first step to complete your payment is entering the One Time Pin (OTP) sent to
+            <span data-bind="text: sentTo"></span> below.
+        </h2>
+    </div>
+    <!-- end step 2 header -->
+</div>
+<!-- end header -->

@@ -1,0 +1,32 @@
+<form class="payment-form" data-bind="visible: currentStep() === 1">
+    <div class="payment-form__input-control">
+        <label data-bind="attr: {for: getCode() + '_phone_number_or_email'}">
+            <span><!-- ko i18n: 'Phone Number or Email' --><!-- /ko --></span>
+            <span style="color: red;">&#42;</span>
+        </label>
+        <div>
+            <input
+                type="text"
+                data-bind="textInput: emailOrPhone, valueUpdate: 'afterkeydown', attr: { id: getCode() + '_phone_number_or_email', maxlength: maxLength }"
+                alt="Enter your email or phone number"
+            >
+        </div>
+    </div>
+
+    <label class="payment-form__terms" data-bind="attr: {for: getCode() + '_terms'}">
+        <input type="checkbox"
+               data-bind="checked: hasAuthorization, attr: {id: getCode() + '_terms'}"
+        >
+        <span>I understand that a One Time Pin(OTP) will be sent via text or email for Two-Factor Authentication.</span>
+    </label>
+
+    <div class="payment-form__button">
+        <button
+            class="payment-form__button__submit"
+            data-bind="click: nextStep"
+            type="submit"
+        >
+            <span data-bind="i18n: 'Next'"></span>
+        </button>
+    </div>
+</form>

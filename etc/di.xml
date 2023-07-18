@@ -1,0 +1,186 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- Payment Method: ACH Direct Debit -->
+    <virtualType name="EdebitPaymentAch" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">\Edebit\Payment\Model\Ach\Ui\ConfigProvider::METHOD_CODE</argument>
+            <argument name="valueHandlerPool" xsi:type="object">EdebitPaymentValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">EdebitPaymentCommandPool</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">Edebit\Payment\Block\Info</argument>
+        </arguments>
+    </virtualType>
+    <!-- Value handlers infrastructure -->
+    <virtualType name="EdebitPaymentValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">EdebitPaymentConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="EdebitPaymentConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">EdebitPaymentConfig</argument>
+        </arguments>
+    </virtualType>
+    <!-- Configuration reader -->
+    <virtualType name="EdebitPaymentConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">\Edebit\Payment\Model\Ach\Ui\ConfigProvider::METHOD_CODE</argument>
+        </arguments>
+    </virtualType>
+    <!-- commandPool -->
+    <virtualType name="EdebitPaymentCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="authorize" xsi:type="string">EdebitPaymentAuthorizeCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- Authorize command -->
+    <virtualType name="EdebitPaymentAuthorizeCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">EdebitPaymentAuthorizationRequest</argument>
+            <argument name="handler" xsi:type="object">EdebitPaymentResponseHandlerComposite</argument>
+            <argument name="transferFactory" xsi:type="object">Edebit\Payment\Gateway\Http\TransferFactory</argument>
+            <argument name="client" xsi:type="object">Edebit\Payment\Gateway\Http\Client\PaymentGatewayClient</argument>
+        </arguments>
+    </virtualType>
+    <!-- Authorization Request -->
+    <virtualType name="EdebitPaymentAuthorizationRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="transaction" xsi:type="string">Edebit\Payment\Gateway\Request\AuthorizationRequest</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- Logger, initialized with SamplePaymentGatewayConfig -->
+    <virtualType name="EdebitPaymentLogger" type="Magento\Payment\Model\Method\Logger">
+        <arguments>
+            <argument name="config" xsi:type="object">EdebitPaymentConfig</argument>
+        </arguments>
+    </virtualType>
+    <!-- Response handlers -->
+    <virtualType name="EdebitPaymentResponseHandlerComposite" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="txnid" xsi:type="string">Edebit\Payment\Gateway\Response\TxnIdHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <!-- Payment Method: Draft -->
+    <virtualType name="EdebitPaymentDraft" type="Magento\Payment\Model\Method\Adapter">
+        <arguments>
+            <argument name="code" xsi:type="const">\Edebit\Payment\Model\Draft\Ui\ConfigProvider::METHOD_CODE</argument>
+            <argument name="valueHandlerPool" xsi:type="object">EdebitPaymentDraftValueHandlerPool</argument>
+            <argument name="commandPool" xsi:type="object">EdebitPaymentDraftCommandPool</argument>
+            <argument name="formBlockType" xsi:type="string">Magento\Payment\Block\Form</argument>
+            <argument name="infoBlockType" xsi:type="string">Edebit\Payment\Block\Info</argument>
+        </arguments>
+    </virtualType>
+    <!-- Value handlers infrastructure -->
+    <virtualType name="EdebitPaymentDraftValueHandlerPool" type="Magento\Payment\Gateway\Config\ValueHandlerPool">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="default" xsi:type="string">EdebitPaymentDraftConfigValueHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="EdebitPaymentDraftConfigValueHandler" type="Magento\Payment\Gateway\Config\ConfigValueHandler">
+        <arguments>
+            <argument name="configInterface" xsi:type="object">EdebitPaymentDraftConfig</argument>
+        </arguments>
+    </virtualType>
+    <!-- Configuration reader -->
+    <virtualType name="EdebitPaymentDraftConfig" type="Magento\Payment\Gateway\Config\Config">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">\Edebit\Payment\Model\Draft\Ui\ConfigProvider::METHOD_CODE</argument>
+        </arguments>
+    </virtualType>
+    <!-- commandPool -->
+    <virtualType name="EdebitPaymentDraftCommandPool" type="Magento\Payment\Gateway\Command\CommandPool">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="authorize" xsi:type="string">EdebitPaymentDraftAuthorizeCommand</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- Authorize command -->
+    <virtualType name="EdebitPaymentDraftAuthorizeCommand" type="Magento\Payment\Gateway\Command\GatewayCommand">
+        <arguments>
+            <argument name="requestBuilder" xsi:type="object">EdebitPaymentDraftAuthorizationRequest</argument>
+            <argument name="handler" xsi:type="object">EdebitPaymentDraftResponseHandlerComposite</argument>
+            <argument name="transferFactory" xsi:type="object">Edebit\Payment\Gateway\Http\TransferFactory</argument>
+            <argument name="client" xsi:type="object">Edebit\Payment\Gateway\Http\Client\PaymentGatewayClient</argument>
+        </arguments>
+    </virtualType>
+    <!-- Authorization Request -->
+    <virtualType name="EdebitPaymentDraftAuthorizationRequest" type="Magento\Payment\Gateway\Request\BuilderComposite">
+        <arguments>
+            <argument name="builders" xsi:type="array">
+                <item name="transaction" xsi:type="string">Edebit\Payment\Gateway\Request\AuthorizationRequest</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <!-- Logger, initialized with SamplePaymentGatewayConfig -->
+    <virtualType name="EdebitPaymentDraftLogger" type="Magento\Payment\Model\Method\Logger">
+        <arguments>
+            <argument name="config" xsi:type="object">EdebitPaymentDraftConfig</argument>
+        </arguments>
+    </virtualType>
+    <!-- Response handlers -->
+    <virtualType name="EdebitPaymentDraftResponseHandlerComposite" type="Magento\Payment\Gateway\Response\HandlerChain">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="txnid" xsi:type="string">Edebit\Payment\Gateway\Response\TxnIdHandler</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="\Edebit\Payment\Model\Config" shared="false">
+        <arguments>
+            <argument name="methodCode" xsi:type="const">\Edebit\Payment\Model\Ach\Ui\ConfigProvider::METHOD_CODE</argument>
+        </arguments>
+        <arguments>
+            <argument name="methodCode" xsi:type="const">\Edebit\Payment\Model\Draft\Ui\ConfigProvider::METHOD_CODE</argument>
+        </arguments>
+    </type>
+    <type name="Edebit\Payment\Gateway\Http\Client\PaymentGatewayClient">
+        <arguments>
+            <argument name="customLogger" xsi:type="object">EdebitPaymentLogger</argument>
+        </arguments>
+        <arguments>
+            <argument name="customLogger" xsi:type="object">EdebitPaymentDraftLogger</argument>
+        </arguments>
+    </type>
+    <type name="Edebit\Payment\Gateway\Request\AuthorizationRequest">
+        <arguments>
+            <argument name="config" xsi:type="object">EdebitPaymentConfig</argument>
+        </arguments>
+        <arguments>
+            <argument name="config" xsi:type="object">EdebitPaymentDraftConfig</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Checkout\Model\GuestPaymentInformationManagement">
+        <plugin name="EdebitPaymentGuestPaymentInformationManagement" type="Edebit\Payment\Plugin\Checkout\GuestPaymentInformationManagement" />
+    </type>
+    <type name="Magento\Checkout\Model\PaymentInformationManagement">
+        <plugin name="EdebitPaymentPaymentInformationManagement" type="Edebit\Payment\Plugin\Checkout\PaymentInformationManagement" />
+    </type>
+    <type name="Edebit\Payment\Model\MethodList">
+        <arguments>
+            <argument name="methodCodes" xsi:type="array">
+                <item name="draft" xsi:type="string">draft</item>
+                <item name="ach" xsi:type="string">ach</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

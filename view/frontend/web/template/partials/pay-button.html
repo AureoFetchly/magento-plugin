@@ -1,0 +1,23 @@
+<div class="payment-form__button">
+    <p class="payment-form-bank__description" data-bind="visible: $data.gateway === 'yodlee'">
+        New or existing customers use your online banking to complete your transaction.
+    </p>
+    <p class="payment-form-bank__description" data-bind="visible: $data.gateway === 'datax'">
+        New or existing customers enter your checking account and bank routing number to complete your transaction.
+    </p>
+    <p class="payment-form-bank__draft" data-bind="visible: $data.code === 'draft'">
+        This payment option is not available to <!-- ko if: $data.gateway === 'yodlee'--> Chase or <!-- /ko --> Online/Prepaid Bank customers
+    </p>
+    <div data-bind="visible: $data.enabled" style="margin-top: 4px">
+        <div class="payment-form-bank__notes" data-bind="visible: $data.notes.yodlee && $data.gateway === 'yodlee'">
+            <p data-bind="text: $data.notes.yodlee"></p>
+        </div>
+        <div class="payment-form-bank__notes" data-bind="visible: $data.notes.datax && $data.gateway === 'datax'">
+            <p data-bind="text: $data.notes.datax"></p>
+        </div>
+    </div>
+    <button class="payment-form__button__submit" data-bind="click: $data.click" type="submit">
+        <span data-bind="i18n: 'Pay Now'"></span>
+    </button>
+</div>
+
